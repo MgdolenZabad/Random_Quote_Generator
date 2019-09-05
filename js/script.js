@@ -9,6 +9,7 @@ var quote;
 var source;
 var year;
 var citation;
+var categorization;
 
 
 var qoutes = [
@@ -33,11 +34,13 @@ var qoutes = [
   {
     quote : "It’s better to be a lion for a day than a sheep all your life.",
     source: "Elizabeth Kenny",
+    categorization : "life-lesson"
 
   },
   {
     quote : "Be happy for this moment. This moment is your life. ",
     source: "Omar Khayyam",
+    categorization : "self-care"
 
   },
 
@@ -54,6 +57,8 @@ function getRandomQuote() {
 
 
 function printQuote() {
+
+
   var randomQuoteIndex = getRandomQuote();
 
   //while loop to check if the random number same as the previous it will change it 
@@ -67,6 +72,7 @@ function printQuote() {
   source = qoutes[randomQuoteIndex].source;
   year = qoutes[randomQuoteIndex].year;
   citation = qoutes[randomQuoteIndex].citation;
+  categorization = qoutes[randomQuoteIndex].categorization;
 
   var html = '';
   html += '<p class="quote">' + quote + '</p>';
@@ -76,7 +82,11 @@ function printQuote() {
     html += '<span class="citation">' + citation + '</span>';
   }
   if (year){
-    html += '<span class="year">' + year + '</span>';
+    html +=  '<span class="year">' + year + '</span>';
+  }
+
+  if (categorization) {
+    html +=  ' ' + '<span class = "categorization" >' + categorization + '</span>';
   }
 
   html += '</p>';
@@ -84,8 +94,10 @@ function printQuote() {
   var outPutQuote = document.getElementById('quote-box');
   outPutQuote.innerHTML = html;
 
-console.log(html);
+  document.body.style.backgroundColor = getRandomColor();
+
   return html;
+
 }
 
 function getRandomColor() {
@@ -98,13 +110,13 @@ function getRandomColor() {
 
 }
 
-console.log(getRandomColor());
+setInterval(printQuote, 20000 );
 
 
-var button = document.getElementById("loadQuote");
-button.addEventListener("click",function() {
-  document.body.style.backgroundColor = getRandomColor();
-  document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
-	});
+
+// what shoild happen when button clicked (change the quote and the background color )
+
+
+document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
