@@ -4,13 +4,11 @@ project 1 - A Random Quote Generator
 ******************************************/
 
 
-
 var lastShownIndex = null;
 var quote;
 var source;
 var year;
 var citation;
-
 
 
 var qoutes = [
@@ -57,6 +55,8 @@ function getRandomQuote() {
 
 function printQuote() {
   var randomQuoteIndex = getRandomQuote();
+
+  //while loop to check if the random number same as the previous it will change it 
   while (lastShownIndex === randomQuoteIndex){
     randomQuoteIndex = getRandomQuote();
   }
@@ -88,6 +88,23 @@ console.log(html);
   return html;
 }
 
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+
+}
+
+console.log(getRandomColor());
 
 
-document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+var button = document.getElementById("loadQuote");
+button.addEventListener("click",function() {
+  document.body.style.backgroundColor = getRandomColor();
+  document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+
+	});
+
