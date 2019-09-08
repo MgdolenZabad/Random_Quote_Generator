@@ -4,7 +4,7 @@ project 1 - A Random Quote Generator
 ******************************************/
 
 
-var lastShownIndex = null;
+var lastRandomQuote = null;
 var quote;
 var source;
 var year;
@@ -12,7 +12,7 @@ var citation;
 var categorization;
 
 
-var qoutes = [
+var quotes = [
   {
     quote : "Life is too important to be taken seriously.",
     source: "Oscar Wilde",
@@ -49,8 +49,8 @@ var qoutes = [
 
 
 function getRandomQuote() {
-  var randomNumber= Math.floor(Math.random() * qoutes.length);
-  return randomNumber;
+  var randomNumber= Math.floor(Math.random() * quotes.length);
+  return quotes[randomNumber];
 }
 
 
@@ -59,20 +59,21 @@ function getRandomQuote() {
 function printQuote() {
 
 
-  var randomQuoteIndex = getRandomQuote();
+  var randomQuote = getRandomQuote();
+
 
   //while loop to check if the random number same as the previous it will change it 
-  while (lastShownIndex === randomQuoteIndex){
-    randomQuoteIndex = getRandomQuote();
+  while (lastRandomQuote === randomQuote){
+    randomQuote = getRandomQuote();
   }
-  lastShownIndex = randomQuoteIndex;
+  lastRandomQuote = randomQuote;
 
 
-  quote = qoutes[randomQuoteIndex].quote;
-  source = qoutes[randomQuoteIndex].source;
-  year = qoutes[randomQuoteIndex].year;
-  citation = qoutes[randomQuoteIndex].citation;
-  categorization = qoutes[randomQuoteIndex].categorization;
+  quote = randomQuote.quote;
+  source = randomQuote.source;
+  year = randomQuote.year;
+  citation = randomQuote.citation;
+  categorization = randomQuote.categorization;
 
   var html = '';
   html += '<p class="quote">' + quote + '</p>';
